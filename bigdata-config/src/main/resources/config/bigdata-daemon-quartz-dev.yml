@@ -1,0 +1,50 @@
+## spring security 配置
+security:
+  oauth2:
+    client:
+      client-id: ENC(K+RvUHjIeAexfsFI1QWnyA==)      #daemon
+      client-secret: ENC(K+RvUHjIeAexfsFI1QWnyA==)  #daemon
+      scope: server
+      # 默认放行url,子模块重写时application-dev.yml中的公共配置会被覆盖,所以要把公共配置中的放行url再写一次
+      ignore-urls:
+        - /actuator/**
+        - /v2/api-docs
+        - /inner-job/**
+
+# 数据源配置
+spring:
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: bsxc!@#123
+    url: jdbc:mysql://bigdata-mysql:3306/bigdata_job?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8
+  resources:
+    static-locations: classpath:/static/,classpath:/views/
+  quartz:
+    #相关属性配置
+    properties:
+      org:
+        quartz:
+          scheduler:
+            instanceName: clusteredScheduler
+            instanceId: AUTO
+          jobStore:
+            class: org.quartz.impl.jdbcjobstore.JobStoreTX
+            driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
+            tablePrefix: QRTZ_
+            isClustered: true
+            clusterCheckinInterval: 10000
+            useProperties: false
+          threadPool:
+            class: org.quartz.simpl.SimpleThreadPool
+            threadCount: 50
+            threadPriority: 5
+            threadsInheritContextClassLoaderOfInitializingThread: true
+    #数据库方式
+    job-store-type: jdbc
+      #初始化表结构
+    #jdbc:
+    #initialize-schema: never
+
+

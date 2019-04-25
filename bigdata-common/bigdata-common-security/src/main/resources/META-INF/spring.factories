@@ -1,0 +1,4 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  org.springframework.cloud.openfeign.BosxHystrixFeignTargeterConfiguration,\
+  com.bosssoft.bigdata.common.security.component.GlobalExceptionHandlerResolver,\
+  com.bosssoft.bigdata.common.security.service.BosxUserDetailsServiceImpl

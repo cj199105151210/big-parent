@@ -1,0 +1,38 @@
+server:
+  port: 7001
+
+
+spring:
+  application:
+    name: @artifactId@
+  # 配置中心
+  cloud:
+    config:
+      fail-fast: true
+      name: ${spring.application.name}
+      profile: ${spring.profiles.active}
+      uri: http://192.168.1.172:8888
+      enabled: true
+  #      discovery:
+  #          enabled: true
+  #          service-id: bigdata-config
+  profiles:
+    active: dev
+  #redis配置
+  main:
+    allow-bean-definition-overriding: true
+
+
+# 注册中心
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+#      defaultZone: http://admin:bs123456@192.168.1.138:8761/eureka/
+      defaultZone: http://bos:bos@localhost:8761/eureka/
+
+minio:
+  url: http://127.0.0.1:9000
+  access-key: RZKX8SU2H40V6L7L3AXP
+  secret-key: DsqEgGKQU6kLAnrkAAgJ+QinjUWG7k24ETKo3bcv

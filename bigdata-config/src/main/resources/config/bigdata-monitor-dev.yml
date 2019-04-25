@@ -1,0 +1,13 @@
+spring:
+  # 安全配置
+  security:
+    user:
+      name: ENC(MsZdAiTFJIluF1AKhldXnQ==)     # bosx
+      password: ENC(MsZdAiTFJIluF1AKhldXnQ==) # bosx
+  boot:
+    admin:
+      ui:
+        resource-locations: 'classpath:/ui/,classpath:/static/'
+        template-location: 'classpath:/ui/'
+        title: 'Bigdata 服务状态监控'
+        brand: 'Bigdata 服务状态监控'

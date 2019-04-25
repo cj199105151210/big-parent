@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>bigdata-common</artifactId>
+        <groupId>com.bosssoft.bigdata</groupId>
+        <version>1.0.1</version>
+    </parent>
+    <groupId>com.bosssoft.bigdata</groupId>
+    <artifactId>bigdata-common-xxljob</artifactId>
+    <name>bigdata-common-xxljob</name>
+    <description>分布式任务调度平台XXL-JOB</description>
+
+    <packaging>jar</packaging>
+
+    <dependencies>
+        <!-- xxl-job-core -->
+        <!-- https://mvnrepository.com/artifact/com.xuxueli/xxl-job-core -->
+        <dependency>
+            <groupId>com.xuxueli</groupId>
+            <artifactId>xxl-job-core</artifactId>
+            <version>2.0.1</version>
+        </dependency>
+    </dependencies>
+
+</project>

@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.bosssoft.bigdata.common.lcn.config.BoxDistributedTransactionConfig

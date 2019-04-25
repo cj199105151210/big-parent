@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>bigdata-common</artifactId>
+        <groupId>com.bosssoft.bigdata</groupId>
+        <version>1.0.1</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.bosssoft.bigdata</groupId>
+    <artifactId>bigdata-common-gateway</artifactId>
+
+    <packaging>jar</packaging>
+
+    <description>bigdata gateway</description>
+
+    <dependencies>
+        <!--工具类核心包-->
+        <dependency>
+            <groupId>com.bosssoft.bigdata</groupId>
+            <artifactId>bigdata-common-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-gateway-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis-reactive</artifactId>
+        </dependency>
+    </dependencies>
+</project>

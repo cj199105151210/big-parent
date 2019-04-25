@@ -1,0 +1,5 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.bosssoft.bigdata.common.core.config.JacksonConfig,\
+  com.bosssoft.bigdata.common.core.config.MessageSourceConfig,\
+  com.bosssoft.bigdata.common.core.config.RestTemplateConfig,\
+  com.bosssoft.bigdata.common.core.util.SpringContextHolder

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+
+    <!--<classPathEntry location="/Users/woni/Documents/java/iflytek/repository/com/oracle/ojdbc6/11.2.0.1.0/ojdbc6-11.2.0.1.0.jar"/>-->
+
+    <!--<classPathEntry location="/Users/woni/Documents/java/iflytek/repository/mysql/mysql-connector-java/5.1.26/mysql-connector-java-5.1.26.jar"/>-->
+    <classPathEntry location="E:/Maven/repository/mysql/mysql-connector-java/6.0.6/mysql-connector-java-6.0.6.jar"/>
+
+    <context id="mysqsqlTables"    targetRuntime="MyBatis3">
+    <commentGenerator>
+        <property name="suppressDate" value="true"/>
+        <property name="suppressAllComments" value="true"/>
+    </commentGenerator>
+    <!--数据库链接地址账号密码-->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://192.168.1.170:3306/user_center" userId="root" password="root">
+        </jdbcConnection>
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+        <!--生成Model类存放位置-->
+        <javaModelGenerator targetPackage="com.bosssoft.bigdata.user.center.model" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        <!--生成映射文件存放位置-->
+        <sqlMapGenerator targetPackage="com.bosssoft.bigdata.user.center.mapper" targetProject="src/main/java">
+        <!--<sqlMapGenerator targetPackage="com.bosssoft.datacentre.allMapper.czbzMapper" targetProject="src/main/java">-->
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+        <!--生成Dao类存放位置-->
+        <!-- 客户端代码，生成易于使用的针对Model对象和XML配置文件 的代码
+                type="ANNOTATEDMAPPER",生成Java Model 和基于注解的Mapper对象
+                type="MIXEDMAPPER",生成基于注解的Java Model 和相应的Mapper对象
+                type="XMLMAPPER",生成SQLMap XML文件和独立的Mapper接口
+        -->
+        <javaClientGenerator type="ANNOTATEDMAPPER" targetPackage="com.bosssoft.bigdata.user.center.mapper" targetProject="src/main/java">
+        <!--<javaClientGenerator type="ANNOTATEDMAPPER" targetPackage="com.bosssoft.datacentre.allMapper.czbzMapper" targetProject="src/main/java">-->
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <!--系统数据库操作 start-->
+        <!--生成对应表及类名-->
+        <!--<table tableName="sys_user" domainObjectName="User" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">-->
+            <!--<property name="useActualColumnNames" value="false"/>-->
+        <!--</table>-->
+        <table tableName="user_group_private" domainObjectName="userGroupPrivate" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+            <property name="useActualColumnNames" value="false"/>
+        </table>
+        <table tableName="user_and_private_group" domainObjectName="userAndPrivateGroup" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+            <property name="useActualColumnNames" value="false"/>
+        </table>
+
+
+        <!--<table tableName="qrtz_logs" domainObjectName="QrtzLogs" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">-->
+            <!--<property name="useActualColumnNames" value="false"/>-->
+            <!--&lt;!&ndash;<columnOverride column="auth" javaType="java.lang.String" jdbcType="BLOB" typeHandler="com.bosssoft.datacentre.persistent.utils.BlobToStringTypeHandler"/>&ndash;&gt;-->
+        <!--</table>-->
+        <!--定时框架 end-->
+
+
+
+    </context>
+</generatorConfiguration>

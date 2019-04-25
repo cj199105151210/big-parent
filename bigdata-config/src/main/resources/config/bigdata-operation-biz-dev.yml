@@ -1,0 +1,50 @@
+## spring security 配置
+security:
+  oauth2:
+    client:
+      client-id: ENC(3ZLPfPwewUvP2/zuTY411A==)      # bos
+      client-secret: ENC(3ZLPfPwewUvP2/zuTY411A==)  # bos
+      scope: server
+      # 默认放行url,子模块重写时application-dev.yml中的公共配置会被覆盖,所以要把公共配置中的放行url再写一次
+      ignore-urls:
+        - /actuator/**
+        - /v2/api-docs
+        - /user/info/*
+        - /social/info/*
+        - /mobile/*
+        - /log/save
+        - /yellow/selectAll
+
+# 数据源
+spring:
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 123456
+    url: jdbc:mysql://bigdata-mysql:3306/bigdata?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8&allowMultiQueries=true
+
+
+# 文件系统minio
+minio:
+  url: http://bigdata-minio:9000
+  access-key: WHF2WW7QP2DWNQV7MQ63
+  secret-key: pM3u0Yp+avPuPqPnwu7v+4k4EmlJqQp3dDuNThtg
+
+# Logger Config
+logging:
+  level:
+    com.bosssoft.bigdata.admin.mapper: debug
+
+# 租户表维护
+bosx:
+  tenant:
+    column: tenant_id
+    tables:
+      - sys_user
+      - sys_role
+      - sys_dept
+      - sys_log
+      - sys_social_details
+      - sys_dict
+      - sys_log

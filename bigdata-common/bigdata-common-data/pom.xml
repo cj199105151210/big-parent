@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>bigdata-common</artifactId>
+        <groupId>com.bosssoft.bigdata</groupId>
+        <version>1.0.1</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.bosssoft.bigdata</groupId>
+    <artifactId>bigdata-common-data</artifactId>
+
+    <packaging>jar</packaging>
+
+    <description>bigdata 数据操作相关</description>
+
+    <dependencies>
+        <!--安全模块-->
+        <dependency>
+            <groupId>com.bosssoft.bigdata</groupId>
+            <artifactId>bigdata-common-security</artifactId>
+        </dependency>
+        <!--工具类核心包-->
+        <dependency>
+            <groupId>com.bosssoft.bigdata</groupId>
+            <artifactId>bigdata-common-core</artifactId>
+        </dependency>
+        <!--mybatis plus extension,包含了mybatis plus core-->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-extension</artifactId>
+        </dependency>
+        <!--缓存依赖-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+    </dependencies>
+</project>

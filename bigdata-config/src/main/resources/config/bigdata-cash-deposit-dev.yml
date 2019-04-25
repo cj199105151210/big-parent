@@ -1,0 +1,44 @@
+## spring security 配置
+security:
+  oauth2:
+    client:
+      client-id: ENC(3ZLPfPwewUvP2/zuTY411A==)      # bos
+      client-secret: ENC(3ZLPfPwewUvP2/zuTY411A==)  # bos
+      scope: server
+      # 默认放行url,子模块重写时application-dev.yml中的公共配置会被覆盖,所以要把公共配置中的放行url再写一次
+      ignore-urls:
+        - /test/**
+        - /log/save
+
+# 数据源
+spring:
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
+    url: jdbc:mysql://192.168.1.170:3306/deposit?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8
+
+# 文件系统minio
+minio:
+  url: http://192.168.1.135:9000
+  access-key: OIBM3ORIS2X3QED2JAR0
+  secret-key: BEi4jItUwQbRwbokt7tK4IUWY8H0U79fnB1sVXJF
+
+# Logger Config
+logging:
+  level:
+    com.bosssoft.bigdata.deposit.mapper: debug
+
+### xxl-job admin address list, such as "http://address" or "http://address01,http://address02"
+xxl:
+  job:
+    admin:
+      addresses: http://127.0.0.1:8080/xxl-job-admin
+    executor:
+      appname: bigdata-task-deposit
+      ip:
+      port: 9999
+      logpath: /data/applogs/xxl-job/jobhandler
+      logretentiondays: -1
+    accessToken:

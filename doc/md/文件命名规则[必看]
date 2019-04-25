@@ -1,0 +1,15 @@
+bosssoft-bigdata-parents
+
+### 项目命名规则
+公司-部门-模块-[分类]
+bosssoft-bigdata-auth
+
+
+### 包名命名规则
+com.公司.部门.功能分类.模块
+com.bosssoft.bigdata.auth.X
+
+
+
+
+

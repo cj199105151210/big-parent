@@ -1,0 +1,78 @@
+server:
+  port: 7002
+
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  #数据源配置
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
+    url: jdbc:mysql://192.168.1.170:3306/bigdata_operation?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8
+
+
+logging:
+  level:
+    com:
+      bosssoft:
+        bigdata:
+          operation: debug
+
+formDesign: #流程引擎
+  contextPath: /formdesignWeb #项目名称
+  uri: http://192.168.1.128:7803 #ip端口号
+  savedata: /designer/savedata #发起流程接口
+
+#分页插件
+
+#单点登录
+cas:
+  server-url-prefix: http://localhost:9090/cas #cas服务器地址
+  server-login-url: http://localhost:9090/cas/login #cas服务器登录地址
+  client-host-url: http://localhost:8081 #客户端地址
+  validation-type: cas #认证类型
+  authentication-url-patterns:
+    - /cas/* #配置登录拦截
+  validation-url-patterns:
+    - /cas/* #配置登录拦截
+security:
+  oauth2:
+    client:
+      client-id: bos
+      client-secret: bos
+      # 默认放行url,如果子模块重写这里的配置就会被覆盖
+      ignore-urls:
+        - /actuator/**
+        - /v2/api-docs
+        - /test/** #添加我们模块忽略security的路径 test就是我们controller开始的
+        - /crawler/**
+        - /newsDetails/**
+        - /schoolDetail/**
+        - /yellow/selectAll
+        - /problem/getPageData
+#        - /middleLeave/**
+pagehelper:
+  helper-dialect: mysql
+  reasonable: false
+  support-methods-arguments: true
+  params: countSql
+  auto-runtime-dialect: true
+
+xxl:
+  job:
+    admin:
+      addresses: http://192.168.1.138:8080/xxl-job-admin
+    executor:
+      ip:
+      appname: operation-scheduler
+      port: 0
+      logpath: /Users/woni/logs/xxl-job/jobhandler
+      logretentiondays: -1
+    accessToken:
+    jobGroup: 3
+    executorRouteStrategy: FIRST
+    author: fhz
+    executorBlockStrategy: SERIAL_EXECUTION
+    templatePath: ClawerTemplateScheduler.java

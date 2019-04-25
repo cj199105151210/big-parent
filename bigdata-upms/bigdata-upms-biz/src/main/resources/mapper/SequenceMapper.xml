@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bosssoft.bigdata.admin.mapper.SequenceMapper">
+
+  <resultMap id="sequenceMap" type="com.bosssoft.bigdata.admin.api.entity.Sequence">
+                  <id property="id" column="id"/>
+                        <result property="guid" column="guid"/>
+                        <result property="group" column="group"/>
+                        <result property="type" column="type"/>
+                        <result property="name" column="name"/>
+                        <result property="remark" column="remark"/>
+                        <result property="jobname" column="jobName"/>
+                        <result property="enabled" column="enabled"/>
+                        <result property="frequency" column="frequency"/>
+                        <result property="createtime" column="createTime"/>
+                        <result property="archived" column="archived"/>
+            </resultMap>
+</mapper>

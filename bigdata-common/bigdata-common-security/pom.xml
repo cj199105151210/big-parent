@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>bigdata-common</artifactId>
+        <groupId>com.bosssoft.bigdata</groupId>
+        <version>1.0.1</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.bosssoft.bigdata</groupId>
+    <artifactId>bigdata-common-security</artifactId>
+
+
+    <packaging>jar</packaging>
+
+    <description>boss 安全工具类</description>
+
+    <dependencies>
+        <!--工具类核心包-->
+        <dependency>
+            <groupId>com.bosssoft.bigdata</groupId>
+            <artifactId>bigdata-common-core</artifactId>
+        </dependency>
+        <!--UPMS接口模块-->
+        <dependency>
+            <groupId>com.bosssoft.bigdata</groupId>
+            <artifactId>bigdata-upms-api</artifactId>
+        </dependency>
+        <!--安全模块-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security.oauth.boot</groupId>
+            <artifactId>spring-security-oauth2-autoconfigure</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.bosssoft.bigdata</groupId>
+            <artifactId>bigdata-usercenter-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-redis</artifactId>
+            <version>2.1.5.RELEASE</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
+</project>

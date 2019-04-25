@@ -1,0 +1,42 @@
+# 数据源
+spring:
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: bsxc!@#123
+    url: jdbc:mysql://bigdata-mysql:3306/bigdata?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8
+  freemarker:
+    allow-request-override: false
+    allow-session-override: false
+    cache: true
+    charset: UTF-8
+    check-template-location: true
+    content-type: text/html
+    enabled: true
+    expose-request-attributes: false
+    expose-session-attributes: false
+    expose-spring-macro-helpers: true
+    prefer-file-system-access: true
+    suffix: .ftl
+    template-loader-path: classpath:/templates/
+
+# CAS认证
+security:
+  cas:
+    server:
+      # cas服务器地址
+      host: http://localhost:8080/cas
+      login: ${security.cas.server.host}/login
+      logout: ${security.cas.server.host}/logout?service=${security.cas.service.host}
+    service:
+      # cas客戶端地址
+      host: http://127.0.0.1:3001
+      login: /login
+      logout: /logout
+    # 应用
+    app:
+      index: http://localhost:8080/#wel/index
+    # 网关
+    gateway:
+      host: http://localhost:2999/auth/oauth/token

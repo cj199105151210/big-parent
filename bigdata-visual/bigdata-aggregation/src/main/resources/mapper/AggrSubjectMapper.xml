@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bosssoft.bigdata.aggregation.mapper.AggrSubjectMapper">
+
+  <resultMap id="aggrSubjectMap" type="com.bosssoft.bigdata.aggregation.entity.AggrSubject">
+                  <id property="subjectId" column="subject_id"/>
+                        <result property="subjectCode" column="subject_code"/>
+                        <result property="gatewayId" column="gateway_id"/>
+                        <result property="lightappId" column="lightapp_id"/>
+                        <result property="typeFlag" column="type_flag"/>
+                        <result property="name" column="name"/>
+                        <result property="sort" column="sort"/>
+                        <result property="status" column="status"/>
+                        <result property="showType" column="show_type"/>
+                        <result property="operationType" column="operation_type"/>
+                        <result property="parentSubjectId" column="parent_subject_id"/>
+                        <result property="createUser" column="create_user"/>
+                        <result property="createTime" column="create_time"/>
+            </resultMap>
+</mapper>

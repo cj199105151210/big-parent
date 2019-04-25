@@ -1,0 +1,60 @@
+## spring security 配置
+security:
+  oauth2:
+    client:
+      client-id: ENC(3ZLPfPwewUvP2/zuTY411A==)      # bos
+      client-secret: ENC(3ZLPfPwewUvP2/zuTY411A==)  # bos
+      scope: server
+#      # 默认放行url,子模块重写时application-dev.yml中的公共配置会被覆盖,所以要把公共配置中的放行url再写一次
+#      ignore-urls:
+#        - /actuator/**
+#        - /v2/api-docs
+#        - /user/info/*
+#        - /social/info/*
+#        - /mobile/*
+#        - /log/save
+#        - /user/register/**
+# 以上配置在各个为服务中过于繁琐剔除，加入新特性注解方式，
+# 参考：com.bosssoft.bigdata.admin.controller.MobileController 手机管理模块验证码开放
+#  //不允许接口开放访问,需要用户登录验证才可以访问
+#  //@Inner(value = true)
+#  //允许接口开放访问
+#  @Inner(value = false)
+#  @GetMapping("/{mobile}")
+#  public R sendSmsCode(@PathVariable String mobile) {
+#     return mobileService.sendSmsCode(mobile);
+#  }
+
+# 数据源
+spring:
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
+    url: jdbc:mysql://192.168.1.170:3306/bigdata?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8&allowMultiQueries=true
+
+# 文件系统minio
+minio:
+  url: http://bigdata-minio:9000
+  access-key: bossdata
+  secret-key: bossdata
+
+# Logger Config
+logging:
+  level:
+    com.bosssoft.bigdata.admin.mapper: debug
+
+# 租户表维护
+bosx:
+  tenant:
+    column: tenant_id
+    tables:
+      - sys_user
+      - sys_role
+      - sys_dept
+      - sys_log
+      - sys_social_details
+      - sys_dict
+      - sys_dict_item
+      - sys_log

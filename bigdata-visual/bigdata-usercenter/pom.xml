@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>bigdata-visual</artifactId>
+        <groupId>com.bosssoft.bigdata</groupId>
+        <version>1.0.1</version>
+    </parent>
+    <groupId>com.bosssoft.bigdata.user.center</groupId>
+    <artifactId>bigdata-usercenter</artifactId>
+    <version>1.0.1</version>
+    <name>bigdata-usercenter</name>
+    <description>用户中心</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.bosssoft.bigdata</groupId>
+            <artifactId>bigdata-common-gateway</artifactId>
+        </dependency>
+        <!--日志处理-->
+        <dependency>
+            <groupId>com.bosssoft.bigdata</groupId>
+            <artifactId>bigdata-common-log</artifactId>
+        </dependency>
+        <!--文件系统 -->
+        <dependency>
+            <groupId>com.bosssoft.bigdata</groupId>
+            <artifactId>bigdata-common-minio</artifactId>
+        </dependency>
+        <!--数据操作-->
+        <dependency>
+            <groupId>com.bosssoft.bigdata</groupId>
+            <artifactId>bigdata-common-data</artifactId>
+            <!--<exclusions>-->
+                <!--<exclusion>-->
+                    <!--<groupId>com.bosssoft.bigdata</groupId>-->
+                    <!--<artifactId>bigdata-common-security</artifactId>-->
+                <!--</exclusion>-->
+            <!--</exclusions>-->
+        </dependency>
+        <!--mybatis-->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+        </dependency>
+        <!--common-->
+        <dependency>
+            <groupId>com.bosssoft.bigdata</groupId>
+            <artifactId>bigdata-common-core</artifactId>
+        </dependency>
+        <!--swagger-->
+        <dependency>
+            <groupId>com.bosssoft.bigdata</groupId>
+            <artifactId>bigdata-common-swagger</artifactId>
+        </dependency>
+        <!--安全模块-->
+        <dependency>
+            <groupId>com.bosssoft.bigdata</groupId>
+            <artifactId>bigdata-common-security</artifactId>
+        </dependency>
+        <!--配置中心客户端-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-config</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+        <!--代码生成模板引擎-->
+        <dependency>
+            <artifactId>velocity</artifactId>
+            <groupId>org.apache.velocity</groupId>
+            <version>${velocity.version}</version>
+        </dependency>
+        <!--web 模块-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <!--undertow容器-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-undertow</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.bosssoft.bigdata</groupId>
+            <artifactId>bigdata-usercenter-api</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.6</version>
+        </dependency>
+
+        <!--CAS 客户端 start-->
+        <dependency>
+            <groupId>net.unicon.cas</groupId>
+            <artifactId>cas-client-autoconfig-support</artifactId>
+            <version>1.7.0-GA</version>
+        </dependency>
+        <!--CAS 客户端 end-->
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-eureka</artifactId>
+            <version>1.4.6.RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-mongodb</artifactId>
+        </dependency>
+        <!--分页插件-->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper-spring-boot-starter</artifactId>
+            <version>1.2.5</version>
+        </dependency>
+
+        <!--拼音插件（获取中文首字母）-->
+        <dependency>
+            <groupId>com.belerweb</groupId>
+            <artifactId>pinyin4j</artifactId>
+            <version>2.5.0</version>
+        </dependency>
+
+        <!--mybatis-spring -->
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>1.3.2</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>${docker.plugin.version}</version>
+            </plugin>
+            <!--<plugin>-->
+                <!--<groupId>org.mybatis.generator</groupId>-->
+                <!--<artifactId>mybatis-generator-maven-plugin</artifactId>-->
+                <!--<version>1.3.5</version>-->
+                <!--<dependencies>-->
+
+                    <!--<dependency>-->
+                        <!--<groupId>mysql</groupId>-->
+                        <!--<artifactId>mysql-connector-java</artifactId>-->
+                        <!--<version>5.1.31</version>-->
+                    <!--</dependency>-->
+
+                    <!--<dependency>-->
+                        <!--<groupId>org.mybatis.generator</groupId>-->
+                        <!--<artifactId>mybatis-generator-core</artifactId>-->
+                        <!--<version>1.3.5</version>-->
+                    <!--</dependency>-->
+                <!--</dependencies>-->
+                <!--<executions>-->
+                    <!--<execution>-->
+                        <!--<id>Generate MyBatis Artifacts</id>-->
+                        <!--<phase>package</phase>-->
+                        <!--<goals>-->
+                            <!--<goal>generate</goal>-->
+                        <!--</goals>-->
+                    <!--</execution>-->
+                <!--</executions>-->
+                <!--<configuration>-->
+                    <!--<verbose>true</verbose>-->
+                    <!--<overwrite>true</overwrite>-->
+                    <!--<configurationFile>-->
+                        <!--src/main/resources/mybatis-generator.xml-->
+                    <!--</configurationFile>-->
+                <!--</configuration>-->
+            <!--</plugin>-->
+
+
+        </plugins>
+    </build>
+
+</project>

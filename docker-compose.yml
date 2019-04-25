@@ -1,0 +1,100 @@
+# 使用说明 V1.0.0
+# 1. 使用docker-compose 宿主机不需要配置host来发现
+# 2. 无需修改源码，根目录  docker-compose up -d即可
+# 3. 等待服务启动
+
+# 附件使用命令
+# docker-compose down --rmi all -v 删除所有容器
+# docker-compose start|stop [项目名称] 单启动和关闭指定项目
+# docker-compose logs -f  [项目名称]   实时查看指定项目日志
+# docker-compose rm [项目名称]  删除停止的服务（服务里的容器）
+# docker-compose build service_a 用来创建或重新创建服务使用的镜像。创建一个镜像名叫service_a
+# docker images 查看所有镜像文件
+# docker ps -n 10 查看
+
+version: '2'
+services:
+  bigdata-mysql:
+    build:
+      context: ./
+      dockerfile: ./doc/db/Dockerfile
+    environment:
+      MYSQL_ROOT_PASSWORD: bsxc!@#123
+    restart: always
+    container_name: bigdata-mysql
+    image: bigdata-mysql
+    ports:
+      - 3306:3306
+
+  bigdata-zookeeper:
+    image: zookeeper:3.4.13
+    restart: always
+    ports:
+      - 2181:2181
+
+  bigdata-redis:
+    image: redis:5.0.4
+    restart: always
+    container_name: bigdata-redis
+    ports:
+      - 6379:6379
+
+  bigdata-eureka:
+    build:
+      context: ./
+      dockerfile: ./bigdata-eureka/Dockerfile
+    restart: always
+    container_name: bigdata-eureka
+    image: bigdata-eureka
+    ports:
+      - 8761:8761
+
+  bigdata-config:
+    build:
+      context: ./
+      dockerfile: ./bigdata-config/Dockerfile
+    restart: always
+    container_name: bigdata-config
+    image: bigdata-config
+    ports:
+      - 8888:8888
+
+  bigdata-gateway:
+    build:
+      context: ./
+      dockerfile: ./bigdata-gateway/Dockerfile
+    restart: always
+    container_name: bigdata-gateway
+    image: bigdata-gateway
+    ports:
+      - 2999:2999
+
+  bigdata-auth:
+    build:
+      context: ./
+      dockerfile: ./bigdata-auth/Dockerfile
+    restart: always
+    container_name: bigdata-auth
+    image: bigdata-auth
+    ports:
+      - 3000:3000
+
+  bigdata-upms:
+    build:
+      context: ./
+      dockerfile: ./bigdata-upms/bigdata-upms-biz/Dockerfile
+    restart: always
+    container_name: bigdata-upms
+    image: bigdata-upms
+    ports:
+      - 4000:4000
+
+  bigdata-codegen:
+    build:
+      context: ./
+      dockerfile: ./bigdata-visual/bigdata-codegen/Dockerfile
+    restart: always
+    image: bigdata-codegen
+    container_name: bigdata-codegen
+    ports:
+      - 5003:5003

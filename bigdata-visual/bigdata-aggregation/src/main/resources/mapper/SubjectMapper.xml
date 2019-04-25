@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bosssoft.bigdata.aggregation.mapper.SubjectMapper">
+
+    <select id="getGatewayPage" resultType="com.bosssoft.bigdata.aggregation.entity.AggrSubject">
+        SELECT DISTINCT
+            s.subject_id,
+            s.subject_code,
+            s.gateway_id,
+            s.lightapp_id,
+            s.type_flag,
+            s.`name`,
+            CASE WHEN sr.subject_id IS NULL THEN s.sort ELSE sr.sort END AS sort,
+            s.`status`,
+            s.show_type,
+            s.operation_type,
+            s.parent_subject_id,
+            s.create_user,
+            s.create_time
+        FROM
+            aggr_subject s
+            LEFT JOIN aggr_subject_rel sr ON s.subject_id = sr.subject_id
+            AND sr.user_id = #{userId}
+            INNER JOIN aggr_gateway g ON s.gateway_id = g.gateway_id
+            LEFT JOIN aggr_widget_rel wr ON s.subject_id = wr.subject_id
+        WHERE
+            s.`status` = '1'
+            AND ( sr.show_status != '0' OR sr.show_status IS NULL )
+            AND g.code = #{code}
+            <if test="identity != null and identity != ''">
+                AND g.identity = #{identity}
+            </if>
+            <if test="identity == null or identity == ''">
+                AND g.identity IS NULL
+            </if>
+            <if test="groupIdList.size() > 0">
+                AND wr.group_id in
+                <foreach collection="groupIdList" index="index" item="item" open="(" separator="," close=")">
+                        #{item}
+                </foreach>
+            </if>
+        ORDER BY
+            s.parent_subject_id,
+        CASE WHEN sr.subject_id IS NULL THEN s.sort ELSE sr.sort END ASC
+    </select>
+
+    <select id="getAddAppByUser" resultType="com.bosssoft.bigdata.aggregation.po.SubjectPO">
+        SELECT
+            g.gateway_id AS gatewayId,
+            "12" AS typeFlag,
+            l.`name` AS `name`,
+            sr.sort AS sort,
+            l.status AS status,
+            sr.parent_subject_id AS parentSubjectId,
+            sr.create_user AS createUser,
+            sr.create_time AS createTime,
+            GROUP_CONCAT(wr.group_id) AS groups,
+            l.photo_url AS photoUrl,
+            l.lightapp_id AS lightappId,
+            l.name AS lightappName
+        FROM
+            aggr_subject_rel sr
+        INNER JOIN aggr_gateway g ON sr.gateway_code = g.code
+        INNER JOIN aggr_lightapp l ON l.lightapp_id = sr.lightapp_id
+        LEFT JOIN aggr_widget_rel wr ON wr.subject_id = l.lightapp_id AND wr.type = #{type}
+        WHERE
+            sr.user_id = #{userId}
+            AND sr.gateway_code = #{code}
+            AND sr.show_status = "1"
+            AND l.`status` = "1"
+        GROUP BY sr.lightapp_id
+        ORDER BY sr.sort ASC
+    </select>
+</mapper>

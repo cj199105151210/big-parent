@@ -1,0 +1,14 @@
+${AnsiColor.BRIGHT_BLUE}
+
+
+
+    ,-----.  ,--.          ,--.          ,--.
+    |  |) /_ `--' ,---.  ,-|  | ,--,--.,-'  '-. ,--,--.
+    |  .-.  \,--.| .-. |' .-. |' ,-.  |'-.  .-'' ,-.  |
+    |  '--' /|  |' '-' '\ `-' |\ '-'  |  |  |  \ '-'  |
+    `------' `--'.`-  /  `---'  `--`--'  `--'   `--`--'
+                 `---'
+               Bigdata  version:2.0.0
+${AnsiColor.BRIGHT_GREEN}
+Application Version: ${application.version}${application.formatted-version}
+Spring Boot Version: ${spring-boot.version}${spring-boot.formatted-version}

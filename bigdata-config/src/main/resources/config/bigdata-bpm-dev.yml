@@ -1,0 +1,28 @@
+## spring security 配置
+security:
+  oauth2:
+    client:
+      client-id: ENC(KTyGa9PVSqq7WnIsfYgp0g==)      # gen
+      client-secret: ENC(KTyGa9PVSqq7WnIsfYgp0g==)  # gen
+      scope: server
+      ignore-urls:
+        - '/actuator/**'
+        - '/v2/api-docs'
+        - '/service/**'
+        - '/editor-app/**'
+        - '/task/view/*'
+        - '/process/resource/**'
+        - '/modeler.html'
+        - '/ws/**'
+spring:
+  autoconfigure:
+    exclude: org.activiti.spring.boot.SecurityAutoConfiguration
+  activiti:
+    check-process-definitions: false
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: bsxc!@#123
+    url: jdbc:mysql://bigdata-mysql:3306/bigdata_ac?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8&nullCatalogMeansCurrent=true
+

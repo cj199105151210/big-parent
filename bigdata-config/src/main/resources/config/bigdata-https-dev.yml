@@ -1,0 +1,42 @@
+## spring security 配置
+security:
+  oauth2:
+    client:
+      ##默认放行url,子模块重写时application-dev.yml中的公共配置会被覆盖，所以要把公共配罡中的放行urZ再写一次
+      ignore-urls:
+        - /actuator/**
+        - /v2/api-docs
+        - /test/**  #添加我们模块忽略security的路径 test就是我们controller开始的
+
+# 数据库添加
+# INSERT INTO `bigdata`.`sys_route_conf`(`id`, `route_name`, `route_id`, `predicates`, `filters`, `uri`, `order`, `create_time`, `update_time`, `del_flag`)
+# VALUES (12, '第三方请求模块',
+# 'bigdata-https',
+# '[{\"args\": {\"_genkey_0\": \"/https/**\"}, \"name\": \"Path\"}]',
+# '[]',
+# 'lb://bigdata-https',
+# 0,
+# '2019-01-17 16:42:50',
+# '2019-03-01 09:29:52',
+# '0');
+
+# 文件系统mongo
+mongo:
+  url: 127.0.0.1
+  port: 27017
+  uri: mongodb://127.0.0.1:27017
+  connectionsPerHost: 50
+  dbName: aipayFileDB
+  access-key: WHF2WW7QP2DWNQV7MQ63
+  secret-key: pM3u0Yp+avPuPqPnwu7v+4k4EmlJqQp3dDuNThtg
+
+# 数据源配置
+spring:
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: bsxc!@#123
+    url: jdbc:mysql://bigdata-mysql:3306/bigdata?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8&allowMultiQueries=true
+  resources:
+    static-locations: classpath:/static/,classpath:/views/

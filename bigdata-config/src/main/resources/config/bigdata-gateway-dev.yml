@@ -1,0 +1,22 @@
+#spring:
+#  cloud:
+#    gateway:
+#      locator:
+#        enabled: true
+
+security:
+  validate:
+    #false 对于开发过程中，验证码（含有短信验证码）可以设置关闭
+    #true 生产环境中需要开启
+    code: false
+  encode:
+    # 前端密码密钥，必须16位
+    key: 'bigsbigsbigsbigs'
+
+# 不校验验证码终端
+ignore:
+  clients:
+    - test
+  # 属性来屏蔽掉不希望生成swaager文档的微服务
+  swagger-providers:
+    - bigdata-auth

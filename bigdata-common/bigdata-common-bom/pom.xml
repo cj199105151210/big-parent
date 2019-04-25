@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>spring-cloud-dependencies-parent</artifactId>
+        <groupId>org.springframework.cloud</groupId>
+        <version>2.1.2.RELEASE</version>
+        <relativePath/>
+    </parent>
+
+    <artifactId>bigdata-common-bom</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0.1</version>
+    <description>bigdata 公共版本控制</description>
+
+    <properties>
+        <!-- MAVEN库地址 -->
+        <m2.proxy>http://192.168.10.60:8081/nexus</m2.proxy>
+        <bigdata.version>1.0.1</bigdata.version>
+        <jackson.modules>2.9.6</jackson.modules>
+        <mybatis-plus.version>3.1.0</mybatis-plus.version>
+        <mysql.connector.version>8.0.13</mysql.connector.version>
+    </properties>
+
+
+    <dependencyManagement>
+        <dependencies>
+            <!--守护进程-->
+            <dependency>
+                <groupId>com.bosssoft.bigdata</groupId>
+                <artifactId>bigdata-common-daemon</artifactId>
+                <version>${bigdata.version}</version>
+            </dependency>
+            <!--日志文件图片组件-->
+            <dependency>
+                <groupId>com.bosssoft.bigdata</groupId>
+                <artifactId>bigdata-common-mongo</artifactId>
+                <version>${bigdata.version}</version>
+            </dependency>
+            <!--聚合平台对外接口公共接口模块-->
+            <dependency>
+                <groupId>com.bosssoft.bigdata.aggregation</groupId>
+                <artifactId>bigdata-aggregation-api</artifactId>
+                <version>${bigdata.version}</version>
+            </dependency>
+            <!--用户中心对外接口接口模块-->
+            <dependency>
+                <groupId>com.bosssoft.bigdata</groupId>
+                <artifactId>bigdata-usercenter-api</artifactId>
+                <version>${bigdata.version}</version>
+            </dependency>
+            <!--UPMS接口模块-->
+            <dependency>
+                <groupId>com.bosssoft.bigdata</groupId>
+                <artifactId>bigdata-upms-api</artifactId>
+                <version>${bigdata.version}</version>
+            </dependency>
+            <!--工具类核心包-->
+            <dependency>
+                <groupId>com.bosssoft.bigdata</groupId>
+                <artifactId>bigdata-common-core</artifactId>
+                <version>${bigdata.version}</version>
+            </dependency>
+            <!--数据操作-->
+            <dependency>
+                <groupId>com.bosssoft.bigdata</groupId>
+                <artifactId>bigdata-common-data</artifactId>
+                <version>${bigdata.version}</version>
+            </dependency>
+            <!--动态路由组件-->
+            <dependency>
+                <groupId>com.bosssoft.bigdata</groupId>
+                <artifactId>bigdata-common-gateway</artifactId>
+                <version>${bigdata.version}</version>
+            </dependency>
+            <!--跑批任务-->
+            <dependency>
+                <groupId>com.bosssoft.bigdata</groupId>
+                <artifactId>bigdata-common-job</artifactId>
+                <version>${bigdata.version}</version>
+            </dependency>
+            <!--日志处理-->
+            <dependency>
+                <groupId>com.bosssoft.bigdata</groupId>
+                <artifactId>bigdata-common-log</artifactId>
+                <version>${bigdata.version}</version>
+            </dependency>
+            <!--文件系统 -->
+            <dependency>
+                <groupId>com.bosssoft.bigdata</groupId>
+                <artifactId>bigdata-common-minio</artifactId>
+                <version>${bigdata.version}</version>
+            </dependency>
+            <!--安全模块-->
+            <dependency>
+                <groupId>com.bosssoft.bigdata</groupId>
+                <artifactId>bigdata-common-security</artifactId>
+                <version>${bigdata.version}</version>
+            </dependency>
+            <!--接口文档swagger-->
+            <dependency>
+                <groupId>com.bosssoft.bigdata</groupId>
+                <artifactId>bigdata-common-swagger</artifactId>
+                <version>${bigdata.version}</version>
+            </dependency>
+            <!--分布式事务工具包-->
+            <dependency>
+                <groupId>com.bosssoft.bigdata</groupId>
+                <artifactId>bigdata-common-transaction</artifactId>
+                <version>${bigdata.version}</version>
+            </dependency>
+            <!--jackson模块-->
+            <dependency>
+                <groupId>com.fasterxml.jackson.module</groupId>
+                <artifactId>jackson-modules-java8</artifactId>
+                <version>${jackson.modules}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!--mybatis plus extension,包含了mybatis plus core-->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-extension</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+            <!--mybatis-->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+            <!--mysql 驱动-->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.connector.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <!-- 【构建】
+       finalName: 生成最后的文件的样式
+       resources: resource的列表，用于包括所有的资源
+       directory: 资源所在的位置
+       filtering: 是否替换资源中的属性placehold
+       targetPath: 指定目标路径，需要打包的目标文件路径，用于build
+       includes: 样式，包括那些资源
+       excludes: 排除的资源
+       testResources: 测试资源列表
+       pluginManagement：插件管理
+       -->
+    <build>
+        <finalName>${project.name}</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <version>${spring-boot.version}</version>
+                    <!-- 我这边缺失了这个-->
+                    <configuration>
+                        <includeSystemScope>true</includeSystemScope>
+                        <finalName>${project.build.finalName}</finalName>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>repackage</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <!--<plugin>
+                    <groupId>com.spotify</groupId>
+                    <artifactId>docker-maven-plugin</artifactId>
+                    <version>${docker.plugin.version}</version>
+                    <configuration>
+                        <imageName>${registry.url}/${project.name}:0.0.1</imageName>
+                        <dockerHost>${docker.url}</dockerHost>
+                        <dockerDirectory>${project.basedir}</dockerDirectory>
+                        <resources>
+                            <resource>
+                                <targetPath>/</targetPath>
+                                <directory>${project.build.directory}</directory>
+                                <include>${project.build.finalName}.jar</include>
+                            </resource>
+                        </resources>
+                        <serverId>docker-hub</serverId>
+                        <registryUrl>https://index.docker.io/v1/</registryUrl>
+                    </configuration>
+                </plugin>-->
+            </plugins>
+        </pluginManagement>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.0</version>
+                <configuration>
+                    <target>${maven.compiler.target}</target>
+                    <source>${maven.compiler.source}</source>
+                    <encoding>UTF-8</encoding>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>pl.project13.maven</groupId>
+                <artifactId>git-commit-id-plugin</artifactId>
+                <version>2.2.5</version>
+            </plugin>
+        </plugins>
+    </build>
+    <!-- 发布仓库配置 -->
+    <distributionManagement>
+        <snapshotRepository>
+            <id>snapshots</id>
+            <name>smartcity(bosssoft) snapshot repository</name>
+            <url>${m2.proxy}/content/repositories/snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>releases</id>
+            <name>smartcity(bosssoft) release repository</name>
+            <url>${m2.proxy}/content/repositories/releases/</url>
+        </repository>
+    </distributionManagement>
+    <!--【仓库】-->
+    <repositories>
+        <repository>
+            <id>public</id>
+            <name>public</name>
+            <url>${m2.proxy}/content/groups/public</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>SnapshotRepository</id>
+            <name>smartcity(bosssoft)-SnapshotRepository</name>
+            <url>${m2.proxy}/content/groups/public-snapshots</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+        </repository>
+        <!-- 阿里云镜像 -->
+        <repository>
+            <id>aliyun</id>
+            <name>aliyun</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+        </repository>
+        <repository>
+            <id>spring-snapshots</id>
+            <name>Spring Snapshots</name>
+            <url>https://repo.spring.io/snapshot</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>https://repo.spring.io/milestone</url>
+        </repository>
+    </repositories>
+    <!--【插件报告】-->
+    <pluginRepositories>
+        <pluginRepository>
+            <id>spring-snapshots</id>
+            <name>Spring Snapshots</name>
+            <url>https://repo.spring.io/snapshot</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </pluginRepository>
+        <pluginRepository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>https://repo.spring.io/milestone</url>
+        </pluginRepository>
+    </pluginRepositories>
+</project>

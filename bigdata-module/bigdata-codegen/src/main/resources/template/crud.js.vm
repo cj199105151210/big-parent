@@ -1,0 +1,32 @@
+const DIC = {
+    status: [{
+        label: '无效',
+        value: '2'
+    }, {
+        label: '有效',
+        value: '1'
+    }]
+}
+export const tableOption = {
+  border: true,
+  index: true,
+  indexLabel: '序号',
+  stripe: true,
+  menuAlign: 'center',
+  align: 'center',
+  refreshBtn: true,
+  showClomnuBtn: false,
+  searchSize: 'mini',
+  editBtn: false,
+  delBtn: false,
+  addBtn: false,
+  viewBtn: true,
+  column: [
+#foreach ($column in $columns)
+	  {
+      label: '$column.comments',
+      prop: '$column.lowerAttrName'
+    },
+#end
+  ]
+}

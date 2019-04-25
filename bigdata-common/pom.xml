@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>bigdata-parent</artifactId>
+        <groupId>com.bosssoft.bigdata</groupId>
+        <version>1.0.1</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.bosssoft.bigdata</groupId>
+    <artifactId>bigdata-common</artifactId>
+
+
+    <packaging>pom</packaging>
+
+    <description>bigdata 公共聚合模块</description>
+
+    <modules>
+        <module>bigdata-common-gateway</module>
+        <module>bigdata-common-core</module>
+        <module>bigdata-common-data</module>
+        <module>bigdata-common-security</module>
+        <module>bigdata-common-swagger</module>
+        <module>bigdata-common-log</module>
+        <module>bigdata-common-minio</module>
+        <module>bigdata-common-bom</module>
+        <module>bigdata-common-job</module>
+        <module>bigdata-common-mongo</module>
+        <module>bigdata-common-transaction</module>
+        <module>bigdata-common-xxljob</module>
+        <module>bigdata-common-daemon</module>
+        <module>bigdata-common-lcn</module>
+    </modules>
+
+
+</project>

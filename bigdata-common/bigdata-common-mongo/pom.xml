@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>bigdata-common</artifactId>
+        <groupId>com.bosssoft.bigdata</groupId>
+        <version>1.0.1</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>bigdata-common-mongo</artifactId>
+    
+    <packaging>jar</packaging>
+
+    <description>bigdata 日志文件系统依赖</description>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <json-lib.version>2.4</json-lib.version>
+    </properties>
+
+    <dependencies>
+        <!--工具类核心包-->
+        <dependency>
+            <groupId>com.bosssoft.bigdata</groupId>
+            <artifactId>bigdata-common-core</artifactId>
+        </dependency>
+        <!-- spring Mongo配置 包
+        <dependency>
+            <groupId>com.spring4all</groupId>
+            <artifactId>mongodb-plus-spring-boot-starter</artifactId>
+            <version>1.0.0.RELEASE</version>
+        </dependency>-->
+        <!-- springData Mongo 使用包
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-mongodb</artifactId>
+            <version>2.0.0.RELEASE</version>
+        </dependency> -->
+        <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>mongo-java-driver</artifactId>
+            <version>3.8.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>bson</artifactId>
+            <version>3.1.0</version>
+        </dependency>
+    </dependencies>
+</project>

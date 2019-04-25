@@ -1,0 +1,11 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+    com.bosssoft.bigdata.common.data.cache.RedisTemplateConfig,\
+    com.bosssoft.bigdata.common.data.cache.RedisCacheManagerConfig,\
+    com.bosssoft.bigdata.common.data.cache.RedisCacheAutoConfiguration,\
+    com.bosssoft.bigdata.common.data.tenant.BosxTenantConfigProperties,\
+    com.bosssoft.bigdata.common.data.tenant.TenantContextHolderFilter,\
+    com.bosssoft.bigdata.common.data.tenant.BosxFeignTenantConfiguration,\
+    com.bosssoft.bigdata.common.data.dictionary.CodeToDataComponent,\
+    com.bosssoft.bigdata.common.data.dictionary.TransnationUtils,\
+    com.bosssoft.bigdata.common.data.dictionary.MyInterceptor,\
+    com.bosssoft.bigdata.common.data.mybatis.MybatisPlusConfig

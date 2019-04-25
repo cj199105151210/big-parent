@@ -1,0 +1,34 @@
+server:
+  port: 8761
+
+spring:
+  security:
+    user:
+      name: bos
+      password: bos
+  application:
+    name: @artifactId@
+  cloud:
+    config:
+      enabled: false
+# docker-compose部署时候 hostname 换成bigdata-eureka
+# 类似的 redis 使用bigdata-redis ,gateway 换成 bigdata-gateway
+eureka:
+  instance:
+    hostname: @artifactId@
+    prefer-ip-address: true
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://bos:bos@localhost:${server.port}/eureka/
+  server:
+    eviction-interval-timer-in-ms: 4000
+    enable-self-preservation: false
+    renewal-percent-threshold: 0.9
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

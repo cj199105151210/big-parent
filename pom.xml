@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <!-- 模型版本 -->
+    <modelVersion>4.0.0</modelVersion>
+    <!-- 公司或者组织的唯一标志，并且配置时生成的路径也是由此生成， 如com.bosssoft.bagdata，
+    maven会将该项目打成的jar包放本地路径：/com/bosssoft/bagdata/project-group -->
+    <groupId>com.bosssoft.bigdata</groupId>
+    <!-- 项目的唯一ID，一个groupId下面可能多个项目，就是靠artifactId来区分的 -->
+    <artifactId>bigdata-parent</artifactId>
+    <!-- 版本号 1.0.1-->
+    <version>1.0.1</version>
+
+    <description>大数据研发中心平台</description>
+    <name>bigdata-parent</name>
+    <packaging>pom</packaging>
+    <!-- 【属性】该元素可以自定义一个或者多个属性，然后在POM其他的地方使用${属性名}的方式引用该属性, 好出是消除重复和统一管理-->
+    <properties>
+        <!-- MAVEN库地址 -->
+        <m2.proxy>http://192.168.10.60:8081/nexus</m2.proxy>
+        <spring-boot.version>2.1.3.RELEASE</spring-boot.version>
+        <spring-cloud.version>Greenwich.RELEASE</spring-cloud.version>
+        <spring-platform.version>Cairo-SR7</spring-platform.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <spring-boot-admin.version>2.1.3</spring-boot-admin.version>
+        <hutool.version>4.4.5</hutool.version>
+        <kaptcha.version>0.0.9</kaptcha.version>
+        <swagger.version>2.9.2</swagger.version>
+        <curator.version>2.10.0</curator.version>
+        <velocity.version>1.7</velocity.version>
+        <lcn.version>4.1.0</lcn.version>
+        <jasypt.version>2.1.0</jasypt.version>
+        <ttl.version>2.10.1</ttl.version>
+        <minio.version>6.0.2</minio.version>
+        <elastic-job-lite.version>2.1.5</elastic-job-lite.version>
+        <security.oauth.version>2.3.4.RELEASE</security.oauth.version>
+        <security.oauth.auto.version>2.1.2.RELEASE</security.oauth.auto.version>
+        <activiti.version>5.22.0</activiti.version>
+        <snakeyaml.version>1.23</snakeyaml.version>
+        <docker.url>http://127.0.0.1:4243</docker.url>
+        <docker.plugin.version>0.4.12</docker.plugin.version>
+        <registry.url>127.0.0.1:5000</registry.url>
+    </properties>
+    <!-- 【依赖】该元素构不仅可以java文件打成jar包，而且还可以将你的依赖的jar包从远程仓库自动下载-->
+    <dependencies>
+        <!--eureka 客户端-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+        <!--配置文件处理器-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <!--jasypt配置文件加解密-->
+        <dependency>
+            <groupId>com.github.ulisesbocchio</groupId>
+            <artifactId>jasypt-spring-boot-starter</artifactId>
+            <version>${jasypt.version}</version>
+        </dependency>
+        <!--监控-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <!--监控客户端-->
+        <dependency>
+            <groupId>de.codecentric</groupId>
+            <artifactId>spring-boot-admin-starter-client</artifactId>
+            <version>${spring-boot-admin.version}</version>
+        </dependency>
+        <!--断路器依赖-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+        </dependency>
+        <!--Lombok-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <!--测试依赖-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+    <!-- 【模块】该元素是模块，用来管理同一个项目中的各个模块-->
+    <modules>
+        <module>bigdata-eureka</module>
+        <module>bigdata-config</module>
+        <module>bigdata-common</module>
+        <module>bigdata-gateway</module>
+        <module>bigdata-upms</module>
+        <module>bigdata-auth</module>
+        <module>bigdata-module</module>
+        <module>bigdata-visual</module>
+    </modules>
+    <!-- 【依赖管理】该元素既能让子模块继承到父模块的依赖配置，又能保证子模块依赖使用的灵活性。
+    该元素下得依赖声明不会引入实际的依赖，不过它能够约束dependencies下的依赖使用。-->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.spring.platform</groupId>
+                <artifactId>platform-bom</artifactId>
+                <version>${spring-platform.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!--版本维护-->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>bigdata-common-bom</artifactId>
+                <version>${project.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!--稳定版本，替代spring security bom内置-->
+            <dependency>
+                <groupId>org.springframework.security.oauth</groupId>
+                <artifactId>spring-security-oauth2</artifactId>
+                <version>${security.oauth.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.security.oauth.boot</groupId>
+                <artifactId>spring-security-oauth2-autoconfigure</artifactId>
+                <version>${security.oauth.auto.version}</version>
+            </dependency>
+            <!--web 模块-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-web</artifactId>
+                <version>${spring-boot.version}</version>
+                <exclusions>
+                    <!--排除tomcat依赖-->
+                    <exclusion>
+                        <artifactId>spring-boot-starter-tomcat</artifactId>
+                        <groupId>org.springframework.boot</groupId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <!-- 【构建】
+    finalName: 生成最后的文件的样式
+    resources: resource的列表，用于包括所有的资源
+    directory: 资源所在的位置
+    filtering: 是否替换资源中的属性placehold
+    targetPath: 指定目标路径，需要打包的目标文件路径，用于build
+    includes: 样式，包括那些资源
+    excludes: 排除的资源
+    testResources: 测试资源列表
+    pluginManagement：插件管理
+    -->
+    <build>
+        <finalName>${project.name}</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <version>${spring-boot.version}</version>
+                    <!-- 我这边缺失了这个-->
+                    <configuration>
+                        <includeSystemScope>true</includeSystemScope>
+                        <finalName>${project.build.finalName}</finalName>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>repackage</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <!-- https://github.com/spotify/docker-maven-plugin
+                    Mvnen :
+                    构建镜像
+                    　　mvn clean package docker:build
+                    构建镜像并且推送到镜像表
+                    　　mvn clean package docker:build -DpushImage
+                    要仅将图像的特定标记推送到注册表，请指定pushImageTag标记
+                       mvn clean package docker:build -DpushImageTag
+                -->
+                <plugin>
+                    <groupId>com.spotify</groupId>
+                    <artifactId>docker-maven-plugin</artifactId>
+                    <version>${docker.plugin.version}</version>
+                    <configuration>
+                        <imageName>${registry.url}/${project.name}:0.0.1</imageName>
+                        <dockerHost>${docker.url}</dockerHost>
+                        <dockerDirectory>${project.basedir}</dockerDirectory>
+                        <resources>
+                            <resource>
+                                <targetPath>/</targetPath>
+                                <directory>${project.build.directory}</directory>
+                                <include>${project.build.finalName}.jar</include>
+                            </resource>
+                        </resources>
+                        <serverId>docker-hub</serverId>
+                        <registryUrl>https://index.docker.io/v1/</registryUrl>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.0</version>
+                <configuration>
+                    <target>${maven.compiler.target}</target>
+                    <source>${maven.compiler.source}</source>
+                    <encoding>UTF-8</encoding>
+					<skip>true</skip>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>pl.project13.maven</groupId>
+                <artifactId>git-commit-id-plugin</artifactId>
+                <version>2.2.5</version>
+            </plugin>
+        </plugins>
+    </build>
+    <!-- 发布仓库配置 -->
+    <distributionManagement>
+        <snapshotRepository>
+            <id>snapshots</id>
+            <name>smartcity(bosssoft) snapshot repository</name>
+            <url>${m2.proxy}/content/repositories/snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>releases</id>
+            <name>smartcity(bosssoft) release repository</name>
+            <url>${m2.proxy}/content/repositories/releases/</url>
+        </repository>
+    </distributionManagement>
+    <!--【仓库】-->
+    <repositories>
+        <repository>
+            <id>public</id>
+            <name>public</name>
+            <url>${m2.proxy}/content/groups/public</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>SnapshotRepository</id>
+            <name>smartcity(bosssoft)-SnapshotRepository</name>
+            <url>${m2.proxy}/content/groups/public-snapshots</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+        </repository>
+        <!-- 阿里云镜像 -->
+        <repository>
+            <id>aliyun</id>
+            <name>aliyun</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+        </repository>
+        <repository>
+            <id>spring-snapshots</id>
+            <name>Spring Snapshots</name>
+            <url>https://repo.spring.io/snapshot</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>https://repo.spring.io/milestone</url>
+        </repository>
+    </repositories>
+    <!--【插件报告】-->
+    <pluginRepositories>
+        <pluginRepository>
+            <id>spring-snapshots</id>
+            <name>Spring Snapshots</name>
+            <url>https://repo.spring.io/snapshot</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </pluginRepository>
+        <pluginRepository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>https://repo.spring.io/milestone</url>
+        </pluginRepository>
+    </pluginRepositories>
+</project>
